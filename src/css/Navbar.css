@@ -94,7 +94,7 @@ nav ul p {
   color: var(--primary-fontColor);
   letter-spacing: 0.4px;
   text-transform: uppercase;
-  padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 nav ul li {
@@ -186,6 +186,67 @@ nav ul li:hover a {
   font-size: 2rem;
 }
 
+.loginSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.loginSection p, .hiddenLogin p {
+  font-size: 0.8rem;
+  color: var(--primary-fontColor);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.loginSection a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  width: 100px;
+  color: var(--primary-fontColor);
+  padding: 0.9rem 0.4rem;
+  border-radius: 1rem;
+  transition: background-color 0.6s, color .4s;
+}
+
+.loginSection a:hover {
+  background-color: var(--hoverNavColor);
+  color: var(--secondary-fontColor);
+}
+
+.loginSection svg {
+  margin-right: .7rem;
+}
+
+.hiddenLogin a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.9rem 0.4rem;
+  color: var(--primary-fontColor);
+  border-radius: 1rem;
+  transition: background-color 0.6s, color .4s;
+}
+
+.hiddenLogin a:hover {
+  background-color: var(--hoverNavColor);
+  color: var(--secondary-fontColor);
+}
+
+.hiddenLogin svg {
+  font-size: 2rem;
+}
+
+.hiddenLogin span {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .mobileNavView {
     width: 0px;
@@ -207,5 +268,19 @@ nav ul li:hover a {
     opacity: 1;
     transition: opacity 1.5s;
   }
+
+ .hiddenLogin {
+    opacity: 0;
+    transition: opacity 0s;
+  }
+
+  .loginSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 1.5s;
+  }
+
 
 }

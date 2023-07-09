@@ -26,10 +26,13 @@ const ProductsList = () => {
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
-      border: state.isFocused ? "1px solid #ccc" : "1px solid #ccc",
+      border: state.isFocused ? "1px solid #ffffff80" : "1px solid #ffffff80",
       borderRadius: "4px",
       backgroundColor: state.isFocused ? "white" : "white",
       boxShadow: state.isFocused ? "black" : provided.boxShadow, 
+      "&:hover": {
+      border: "1px solid #ffffff80", // Zmień na dowolny kolor i styl obramowania
+    },
     }),
     option: (provided, state) => ({
       ...provided,

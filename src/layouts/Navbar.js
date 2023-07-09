@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   FaHome,
   FaShoppingBag,
   FaInfoCircle,
   FaChevronRight,
+  FaUser,
 } from "react-icons/fa";
 import "../css/Navbar.css";
 
@@ -67,6 +68,13 @@ const Navbar = () => {
         <p>main</p>
         {navList}
       </ul>
+      <hr />
+      <section className={showNav ? "hiddenLogin" : 'loginSection'}>
+        <p>account</p>
+        <NavLink onClick={handleShowNavMobile} to="/login">
+          <FaUser />  <span>Login</span>
+        </NavLink>
+      </section>
     </nav>
   );
 };
