@@ -1,0 +1,99 @@
+.registerPage {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+.registerPage form {
+    display: flex;
+    border-radius: 2rem;
+    width: 800px;
+    margin-top: 100px;
+    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.25);
+    height: 400px;
+}  
+
+.registerImage {
+    flex-basis: 1300px;
+}
+
+.registerImage img {
+    border-radius: 2rem 0 0 2rem;
+    height: 100%;
+    width: 100%;
+}
+
+
+.registerForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 2rem;
+    border-radius: 0 2rem 2rem 0;
+    background-color: var(--greyScale);
+}
+
+.registerForm h3 {
+    margin-bottom: 1rem;
+}
+
+.registerForm label {
+   font-size: .7rem;
+   margin-bottom: 1rem; 
+}
+
+.registerForm input {
+    background-color: var(--secondary-backgroundColor);
+    margin-bottom: 1rem;
+    padding: .5rem;
+    border-radius: .4rem;
+    outline: none;
+    border: none;
+}
+
+.registerForm button {
+    background-color: #005b5c;
+    padding: .7rem;
+    border-radius: .4rem;
+    border: none;
+    color: var(--greyScale);
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.registerForm p {
+    font-size: .7rem;
+}
+
+
+@media screen and (max-width: 768px) {
+    .registerPage {
+        padding: 1rem;
+    }
+    
+    .registerPage form {
+        display: flex;
+        flex-direction: column;
+        min-width: 200px;
+        margin-top: 50px;
+        border-radius: 1rem;
+    }
+    
+    .registerImage {
+        height: auto;
+        flex: 1; 
+    }
+    
+    .registerImage img {
+        border-radius: 1rem 1rem 0 0;
+        min-height: 100%;
+        object-fit: cover; 
+        width: 100%; 
+        height: 100%; 
+    }
+
+    .registerForm {
+        border-radius: 0 0 1rem 1rem;
+    }
+}
