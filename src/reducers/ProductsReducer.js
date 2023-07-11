@@ -1,7 +1,7 @@
 import {
   ADD_PRODUCTS,
   REMOVE_PRODUCTS,
-  FAVOURITES_PRODUCTS,
+  FILTER_FAVOURITE_PRODUCTS,
   FILTER_PRODUCTS,
 } from "../actions/appActions";
 import { products } from "../data";
@@ -25,17 +25,30 @@ const ProductsReducer = (state = initialState, action) => {
         basketQuantity: state.basketQuantity - action.payload.quantity,
       };
       case FILTER_PRODUCTS:
-        const filteredProducts = state.products.filter(
-          (product) => product.category === action.payload.category
-        );
-  
+        const { category } = action.payload;
+        const filteredProducts = state.products.filter(product => {
+          if (category === "all") {
+            return true; // Zwraca wszystkie produkty, jeśli kategoria to "all"
+          } else {
+            return product.category === category; // Zwraca produkty z pasującą kategorią
+          }
+        });
+      
         return {
           ...state,
-          filteredProducts: filteredProducts,
+          filteredProducts,
         };
-      default:
-        return state;
-    }
-  };
+      case FILTER_FAVOURITE_PRODUCTS:
+        const favouriteProducts = state.products.filter(product => product.favourite === action.payload);
+        return {
+          ...state,
+          filteredProducts: favouriteProducts.length > 0 ? favouriteProducts : [],
+        };
+      
+
+    default:
+      return state;
+  }
+};
 
 export default ProductsReducer;

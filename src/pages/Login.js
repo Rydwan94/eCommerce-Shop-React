@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../css/Login.css";
 
 import loginImg from "../img/loginImg.jpg";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 const Login = () => {
@@ -12,6 +12,12 @@ const Login = () => {
   useEffect(() => {
     inputRef.current.focus()
   },[])
+
+  const [usernameInput, setUsernameInput] = useState('')
+  const [passwordInput, setPasswordInput] = useState('')
+
+  const handleUsernameInput = e => setUsernameInput(e.target.value)
+  const handlePasswordInput = e => setPasswordInput(e.target.value)
 
   return (
     <div className="loginPage">
@@ -22,10 +28,10 @@ const Login = () => {
         <section className="loginForm">
           <h3>Nice to see you again</h3>
           <label htmlFor="username">Username:</label>
-          <input ref={inputRef} type="text" id="username" />
+          <input ref={inputRef} type="text" id="username" value={usernameInput} onChange={handleUsernameInput} placeholder="Username..."/>
 
           <label htmlFor="password">Password:</label>
-          <input type="password" id="password" />
+          <input type="password" id="password" value={passwordInput} onChange={handlePasswordInput} placeholder="Password..." />
 
           <button type="submit">Log in</button>
           <p>

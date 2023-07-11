@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaShoppingCart } from "react-icons/fa";
 import Select from "react-select";
 
-import { filter } from "../actions/appActions";
+import { filter, filterFavouritesProducts } from "../actions/appActions";
 
 import "../css/ProductsList.css";
 
@@ -15,12 +15,14 @@ const ProductsList = () => {
   const { products, filteredProducts } = productsArray;
   const dispatch = useDispatch();
 
+  console.log(filteredProducts)
   const options = [
-    { value: "all", label: <FaShoppingCart /> },
+    { value: "all", label: "All" },
     { value: "Phones", label: "Phones" },
     { value: "Computers", label: "Computers" },
     { value: "Audio", label: "Audio" },
     { value: "Games", label: "Games" },
+    { value: "Favourites", label: "Favourites" },
   ];
 
   const customStyles = {
@@ -29,10 +31,10 @@ const ProductsList = () => {
       border: state.isFocused ? "1px solid #ffffff80" : "1px solid #ffffff80",
       borderRadius: "4px",
       backgroundColor: state.isFocused ? "white" : "white",
-      boxShadow: state.isFocused ? "black" : provided.boxShadow, 
+      boxShadow: state.isFocused ? "black" : provided.boxShadow,
       "&:hover": {
-      border: "1px solid #ffffff80", // Zmień na dowolny kolor i styl obramowania
-    },
+        border: "1px solid #ffffff80",
+      },
     }),
     option: (provided, state) => ({
       ...provided,
@@ -40,16 +42,18 @@ const ProductsList = () => {
       color: state.isSelected ? "white" : "black",
     }),
   };
-  
 
   const handleSelect = (selectedOption) => {
     setSelectValue(selectedOption.value);
 
-    dispatch(filter(selectedOption.value));
+    if (selectedOption.value === "Favourites") {
+      return dispatch(filterFavouritesProducts());
+    }
+    return dispatch(filter(selectedOption.value));
   };
 
   const displayedProducts =
-    filteredProducts.length > 0 ? filteredProducts : products;
+    filteredProducts.length > 0 ? filteredProducts : [];
 
   const productsList = displayedProducts.map((product) => (
     <SingleProduct key={product.id} {...product} />
@@ -61,7 +65,11 @@ const ProductsList = () => {
         <h2>
           Search <span>Products</span>
         </h2>
-        <Select styles={customStyles} onChange={handleSelect} options={options} />
+        <Select
+          styles={customStyles}
+          onChange={handleSelect}
+          options={options}
+        />
       </section>
       <section className="productsList">{productsList}</section>
     </div>

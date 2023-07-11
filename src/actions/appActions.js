@@ -2,7 +2,8 @@
 import { products } from "../data";
 export const ADD_PRODUCTS = "ADD_PRODUCT";
 export const REMOVE_PRODUCTS = "REMOVE_PRODUCT";
-export const FAVOURITES_PRODUCTS = "FAVOURITES_PRODUCTS";
+export const ADD_TO_FAVOURITE_PRODUCT = "ADD_TO_FAVOURITE_PRODUCT";
+export const FILTER_FAVOURITE_PRODUCTS = "FILTER_FAVOURITE_PRODUCTS"
 export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
 
 export const add = (productId) => {
@@ -28,21 +29,29 @@ export const remove = (productId) => {
   };
 };
 
-export const favourites = (productId) => {
+export const addToFavourite = (productId) => {
   const product = products.find((p) => p.id === productId);
   return {
-    type: FAVOURITES_PRODUCTS,
+    type: ADD_TO_FAVOURITE_PRODUCT,
     payload: {
       id: product.id,
     },
   };
 };
 
+export const filterFavouritesProducts = () => {
+  return {
+    type: FILTER_FAVOURITE_PRODUCTS,
+    payload: true,
+  };
+};
+
+
 export const filter = (category) => {
   return {
     type: FILTER_PRODUCTS,
     payload: {
-      category: category,
+      category
     },
   };
 };
